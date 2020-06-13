@@ -4,9 +4,8 @@ import { firestore } from "../firebase";
 import moment from "moment";
 
 const Post = ({ title, content, user, createdAt, stars, comments, id }) => {
-  const handleRemove = async (postId) => {
-    firestore.doc(`posts/${postId}`).delete();
-  };
+  const postRef = firestore.doc(`posts/${id}`);
+  const remove = () => postRef.delete();
   return (
     <article className="Post">
       <div className="Post--content">
@@ -32,7 +31,7 @@ const Post = ({ title, content, user, createdAt, stars, comments, id }) => {
         </div>
         <div>
           <button className="star">Star</button>
-          <button onClick={() => handleRemove(id)} className="delete">
+          <button onClick={remove} className="delete">
             Delete
           </button>
         </div>
