@@ -10,10 +10,6 @@ class AddPost extends Component {
     this.setState({ [name]: value });
   };
 
-  handleCreate = async (post) => {
-    firestore.collection("posts").add(post);
-  };
-
   handleSubmit = (event) => {
     event.preventDefault();
 
@@ -32,8 +28,7 @@ class AddPost extends Component {
       comments: 0,
       createdAt: new Date(),
     };
-
-    this.handleCreate(post);
+    firestore.collection("posts").add(post);
 
     this.setState({ title: "", content: "" });
   };
