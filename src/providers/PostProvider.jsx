@@ -4,10 +4,8 @@ import { collectAll } from "../utilities";
 
 export const PostsContext = createContext();
 
-const PostProvider = (props) => {
+const PostProvider = ({ children }) => {
   const [posts, setPosts] = useState([]);
-
-  // let unsubscribeFromFirestore = null;
 
   useEffect(() => {
     const unsubscribeFromFirestore = firestore
@@ -22,7 +20,7 @@ const PostProvider = (props) => {
       unsubscribeFromFirestore();
     };
   }, []);
-  const { children } = props;
+
   return (
     <PostsContext.Provider value={posts}>{children}</PostsContext.Provider>
   );
