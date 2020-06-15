@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { firestore, auth, createUserDocument } from "../firebase";
+import { auth, createUserDocument } from "../firebase";
 
 import Posts from "./Posts";
 import Authentication from "./Authentication";
