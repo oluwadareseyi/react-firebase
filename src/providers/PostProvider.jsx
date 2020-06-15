@@ -4,7 +4,7 @@ import { collectAll } from "../utilities";
 
 export const PostsContext = createContext();
 
-class postProvider extends Component {
+class PostProvider extends Component {
   state = {
     posts: [],
   };
@@ -34,4 +34,4 @@ class postProvider extends Component {
   }
 }
 
-export default postProvider;
+export default PostProvider;
