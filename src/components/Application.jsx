@@ -18,6 +18,7 @@ class Application extends Component {
   componentDidMount = async () => {
     this.unsubscribeFromFirestore = firestore
       .collection("posts")
+      .orderBy("createdAt", "desc")
       .onSnapshot((snapshot) => {
         const posts = snapshot.docs.map(collectAll);
         this.setState({ posts });
