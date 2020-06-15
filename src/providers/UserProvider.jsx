@@ -9,7 +9,7 @@ const UserProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       const user = await createUserDocument(userAuth);
-      console.log(user);
+      //   console.log(user);
       setUser(user);
     });
 
