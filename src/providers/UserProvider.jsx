@@ -14,11 +14,12 @@ const UserProvider = ({ children }) => {
           setUser({
             uid: snapshot.id,
             ...snapshot.data(),
-            createdAt: snapshot.data().createdAt.toDate(),
+            // createdAt: snapshot.data().createdAt.toDate(),
           });
         });
+      } else {
+        setUser(userAuth);
       }
-      setUser(userAuth);
     });
 
     return () => {
