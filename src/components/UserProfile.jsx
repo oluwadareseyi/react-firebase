@@ -27,6 +27,12 @@ const UserProfile = () => {
       });
     }
 
+    if (
+      /\.(jpe?g|png|gif)$/i.test(imageInputRef.current.files[0].name) === false
+    ) {
+      return alert("not an image!");
+    }
+
     // we check if there is an actual file, returns the file as truthy if there is one.
     if (getFile()) {
       // we get/set the location where we want to upload the file in the storage bucket.
@@ -78,7 +84,12 @@ const UserProfile = () => {
           onChange={handleChange}
           value={displayName}
         />
-        <input type="file" name="imageInput" ref={imageInputRef} />
+        <input
+          type="file"
+          name="imageInput"
+          ref={imageInputRef}
+          accept="image/x-png,image/gif,image/jpeg"
+        />
         <input className="update" type="submit" />
       </form>
     </section>
