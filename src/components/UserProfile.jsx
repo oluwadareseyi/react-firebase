@@ -24,12 +24,13 @@ const UserProfile = () => {
     }
 
     if (getFile()) {
-      const uploadTask = storage
+      const uploadLocation = storage
         .ref()
         .child("user-profiles")
         .child(getUid())
-        .child(getFile().name)
-        .put(getFile());
+        .child(getFile().name);
+
+      const uploadTask = uploadLocation.put(getFile());
 
       uploadTask.on(
         "state_changed",
@@ -44,12 +45,7 @@ const UserProfile = () => {
           console.log(err);
         },
         async () => {
-          const photoURL = await storage
-            .ref()
-            .child("user-profiles")
-            .child(getUid())
-            .child(getFile().name)
-            .getDownloadURL();
+          const photoURL = await uploadLocation.getDownloadURL();
 
           getUserRef().update({
             photoURL,
