@@ -59,9 +59,10 @@ export const getUserDocument = async (uid) => {
   if (!uid) return null;
 
   try {
-    const userDocument = await firestore.collection("users").doc(uid).get();
-    return { uid, ...userDocument.data() };
-  } catch (error) {}
+    return firestore.collection("users").doc(uid);
+  } catch (error) {
+    console.log("error fetching user");
+  }
 };
 
 export default firebase;
