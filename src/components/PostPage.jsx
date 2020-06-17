@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 
 import Post from "./Post";
+import { withRouter } from "react-router-dom";
 
 import Comments from "./Comments";
 import { firestore } from "../firebase";
 import { collectAll } from "../utilities";
-import { withRouter } from "react-router-dom";
+import withUser from "./withUser";
 
 const PostPage = (props) => {
   const { params } = props.match;
@@ -34,13 +35,16 @@ const PostPage = (props) => {
       unsubscribeFromPost();
       unsubscribeFromComments();
     };
-  }, [getCommentsRef, getPostRef]);
+  }, []);
 
   const createComment = (comment) => {
+    const { user } = props;
     getCommentsRef().add({
       ...comment,
+      user,
     });
   };
+
   return (
     <section>
       {post && <Post {...post} />}
@@ -49,4 +53,4 @@ const PostPage = (props) => {
   );
 };
 
-export default withRouter(PostPage);
+export default withRouter(withUser(PostPage));
