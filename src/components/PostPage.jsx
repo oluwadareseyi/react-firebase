@@ -34,7 +34,7 @@ const PostPage = (props) => {
       unsubscribeFromPost();
       unsubscribeFromComments();
     };
-  }, []);
+  }, [getCommentsRef, getPostRef]);
 
   const createComment = (comment) => {
     getCommentsRef().add({
